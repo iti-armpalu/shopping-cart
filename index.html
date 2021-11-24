@@ -1,23 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>Shopping Cart</title>
 
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/application.js"></script>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+    <!-- CSS Bootstrap and stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+    <section class="container">
+      <div class="row no-gutters">
+        <div class="col-xs-12 d-flex mt-3 align-items-center">
+          <span style="font-size: 3em; color: #404040;">
+            <i class="fas fa-shopping-cart"></i>
+          </span>
+          <h1 class="cart-title ml-4 my-0">Shopping Cart</h1>
+        </div>
+      </div>
+      <hr>
+    </section>
+
+    <section class="container">
+      <div  id="shopping-cart-list">
+        <div class="row no-gutters text-center mb-4">
+          <div class="col w-20">
+            <h5>Item</h5>
+          </div>
+          <div class="col w-20">
+            <h5>Price ($)</h5>
+          </div>
+          <div class="col w-20">
+            <h5>Quantity</h5>
+          </div>
+          <div class="col w-20">
+            <h5>Subtotal ($)</h5>
+          </div>
+          <div class="col w-20">
+            <h5>Remove item</h5>
+          </div>
+        </div>
+        <div class="shopping-cart-inner">
+          <div class="row no-gutters item-wrap mb-2 bg-light text-center align-items-center">
+            <div class="item-name col w-20 align-items-center">
+              <h5>Apple</h5>
+            </div>
+            <div class="item-price col w-20">
+              <h5>$ 10.00</h5>
+            </div>
+            <div class="item-qty col w-20">
+              <input class="quantity-input form-control form-control-sm w-50 mx-auto" type="number" value="1">
+            </div>
+            <div class="item-subtotal col w-20">
+              <h5 class="subtotal">$--.--</h5>
+            </div>
+            <div class="item-remove col w-20">
+              <button class="btn btn-danger btn-sm btn-block remove w-50 mx-auto">Remove</button>
+            </div>
+          </div>
+          <div class="row no-gutters item-wrap mb-2 bg-light text-center align-items-center">
+            <div class="item-name col w-20 align-items-center">
+              <h5>Banana</h5>
+            </div>
+            <div class="item-price col w-20">
+              <h5>$ 5.00</h5>
+            </div>
+            <div class="item-qty col w-20">
+              <input class="quantity-input form-control form-control-sm w-50 mx-auto" type="number" value="1">
+            </div>
+            <div class="item-subtotal col w-20">
+              <h5 class="subtotal">$--.--</h5>
+            </div>
+            <div class="item-remove col w-20">
+              <button class="btn btn-danger btn-sm btn-block remove w-50 mx-auto">Remove</button>
+            </div>
+          </div>
+          <div class="row no-gutters item-wrap mb-2 bg-light text-center align-items-center">
+            <div class="item-name col w-20 align-items-center">
+              <h5>Orange</h5>
+            </div>
+            <div class="item-price col w-20">
+              <h5>$ 20.00</h5>
+            </div>
+            <div class="item-qty col w-20">
+              <input class="quantity-input form-control form-control-sm w-50 mx-auto" type="number" value="1">
+            </div>
+            <div class="item-subtotal col w-20">
+              <h5 class="subtotal">$--.--</h5>
+            </div>
+            <div class="item-remove col w-20">
+              <button class="btn btn-danger btn-sm btn-block remove w-50 mx-auto">Remove</button>
+            </div>
+          </div>
+          <!-- Here comes the shopping cart list -->
+        </div>
+      </div>
+
+      <div class="add-wrap my-4">
+        <p class="add-text mb-2">Add more items to your shopping cart:</p>
+        <form id="addItem">
+          <div class="form-row item new">
+              <input id="item-input" class="col-3 mr-2" name="name" type="text" placeholder="Item name (e.g. Apple)" required/>
+              <input id="price-input" class="col-3 mr-2" name="price" type="number" placeholder="Item price (e.g. 10)" required />
+              <button type="submit" class="btn btn-default add">Add</button>
+          </div>
+        </form>
+      </div>
+      <hr>
+    </section>
+
+    <section class="container">
+      <div class="row no-gutters">
+        <div class="col-xs-12">
+          <h1 class="total-price-label">Cart total:<span id="total-price">$--.--</span></h1>
+        </div>
+      </div>
+      <hr>
+    </section>
 
   </body>
 </html>
